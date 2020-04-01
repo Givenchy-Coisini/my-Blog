@@ -1,0 +1,32 @@
+{
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  },
+  "name": "myblog_1",
+  "version": "1.0.0",
+  "main": "bin/www.js",
+  "dependencies": {
+    "_cross-spawn@7.0.1@cross-spawn": "^7.0.1",
+    "_cross-env@7.0.2@cross-env": "^7.0.2",
+    "_path-key@3.1.1@path-key": "^3.1.1",
+    "_isexe@2.0.0@isexe": "^2.0.0",
+    "_which@2.0.2@which": "^2.0.2",
+    "_shebang-regex@3.0.0@shebang-regex": "^3.0.0",
+    "_shebang-command@2.0.0@shebang-command": "^2.0.0",
+    "isexe": "^2.0.0",
+    "path-key": "^3.1.1",
+    "cross-spawn": "^7.0.1",
+    "shebang-command": "^2.0.0",
+    "shebang-regex": "^3.0.0",
+    "which": "^2.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"cross-env NODE_ENV=dev nodemon ./bin/www.js" ,
+    "prd":"cross-env NODE_ENV=production nodemon ./bin/www.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
