@@ -1,5 +1,5 @@
 const {loginCheck} = require('../controller/user')
-const {SuccessModel,ErrorModel} = require('../molel/resModel')
+const {SuccessModel,ErrorModel} = require('../model/resModel')
 const handleUserRouter = (req,res)=>{
     const method = req.method
     //获取博客列表
