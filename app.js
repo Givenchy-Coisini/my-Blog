@@ -50,11 +50,13 @@ const serverHandle = ((req, res) => {
             return
         }
         //处理user路由
-        const userData = handleUserRouter(req, res)
-        if (userData) {
-            res.end(
-                JSON.stringify(userData)
-            )
+        const userResult = handleUserRouter(req, res)
+        if (userResult) {
+            userResult.then(userData => {
+                res.end(
+                    JSON.stringify(userData)
+                )
+            })
             return
         }
         //未命中路由返回404
