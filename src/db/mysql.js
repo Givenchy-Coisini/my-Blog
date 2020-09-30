@@ -18,8 +18,8 @@ function exec(sql) {
             }
             resolve(result)
         })
-        return promise
     })
+    return promise
 
 }
 
