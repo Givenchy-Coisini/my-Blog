@@ -23,7 +23,6 @@ const getPostData = (req) => {
             }
             reslove(
                 JSON.parse(postData)
-
             )
         })
     })
@@ -36,7 +35,7 @@ const serverHandle = ((req, res) => {
     req.path = url.split('?')[0]
     //解析query
     req.query = querystring.parse(url.split('?')[1])
-    //处理postData
+    //处理postData   异步
     getPostData(req).then(postData => {
         req.body = postData
         //处理blog路由
