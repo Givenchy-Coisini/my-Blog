@@ -35,6 +35,9 @@ const serverHandle = ((req, res) => {
     req.path = url.split('?')[0]
     //解析query
     req.query = querystring.parse(url.split('?')[1])
+    //todo  解析cookie
+    req.cookie = {}
+    const cookieStr = req.headers.cookie || '' //k1=v1;k2=v2;k3=v3;
     //处理postData   异步
     getPostData(req).then(postData => {
         req.body = postData
