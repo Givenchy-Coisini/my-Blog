@@ -38,6 +38,16 @@ const serverHandle = ((req, res) => {
     //todo  解析cookie
     req.cookie = {}
     const cookieStr = req.headers.cookie || '' //k1=v1;k2=v2;k3=v3;
+    cookieStr.split(';').forEach(item=>{
+        if(!item){//split用于将字符串分隔成字符串数组
+            return
+        }
+        const arr = item.split('=')//在等号那里分开
+        const key =arr [0]
+        const val = arr[1]
+        req.cookie[key] = val
+    })
+    console.log('xxxx',req.cookie)
     //处理postData   异步
     getPostData(req).then(postData => {
         req.body = postData
