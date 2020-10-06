@@ -43,8 +43,8 @@ const serverHandle = ((req, res) => {
             return
         }
         const arr = item.split('=')//在等号那里分开
-        const key =arr [0]
-        const val = arr[1]
+        const key =arr [0].trim()
+        const val = arr[1].trim()//? 去掉空格
         req.cookie[key] = val
     })
     console.log('xxxx',req.cookie)
