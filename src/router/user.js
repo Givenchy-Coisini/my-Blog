@@ -1,13 +1,6 @@
 const { login } = require('../controller/user')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 
-
-//获取cookie 的过期时间
-const getCookieExpires = () => {
-    const d = new Date()
-    d.setTime(d.getTime() + (24 * 60 * 60 * 1000))
-    return d.toGMTString()
-}
 const handleUserRouter = (req, res) => {
     const method = req.method
     //获取博客列表
@@ -17,9 +10,9 @@ const handleUserRouter = (req, res) => {
         const result = login(username, password)
         return result.then(data => {
             if (data.username) {
-                //操作cookie
-                res.setHeader('Set-Cookie', `username=${data.username}; path=/ httpOnly expiers=${getCookieExpires()}`)
-                //httpOnly   是确保不能在浏览器中修改cookie
+                //设置session
+                req.session.username = data.username
+                req.session.realname = data.realname
                 return new SuccessModel()
             }
             return new ErrorModel('登录失败')
@@ -28,10 +21,10 @@ const handleUserRouter = (req, res) => {
     }
     //登录验证的测试
     if (method === 'GET' && req.path === "/api/user/login-test") {
-        if (req.cookie.username) {
+        if ( req.session.username) {
             return Promise.resolve(new SuccessModel(
                 {
-                    username: req.cookie.username
+                    session:  req.session
                 }
             ))// Promise.resolve 可以直接返回一个promise
         }
