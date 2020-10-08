@@ -73,7 +73,7 @@ const serverHandle = ((req, res) => {
         }
     } else {
         needSetCookie = true
-        userId = `${Data.now()}_${Math.random()}`
+        userId = `${Date.now()}_${Math.random()}`
         SESSION_DATA[userId] = {}
     }
     req.session = SESSION_DATA[userId]
