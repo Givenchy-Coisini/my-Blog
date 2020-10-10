@@ -20,7 +20,8 @@
     "redis": "^3.0.2",
     "shebang-command": "^2.0.0",
     "shebang-regex": "^3.0.0",
-    "which": "^2.0.2"
+    "which": "^2.0.2",
+    "xss": "^1.0.8"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

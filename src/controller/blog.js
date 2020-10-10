@@ -1,4 +1,5 @@
 const { exec } = require('../db/mysql')
+const xss = require('xss')
 const getList = (author, keyword) => {
     let sql = `select * from blogs where 1=1 `
     //因为 author 和 keyword值不确定 所以要有1=1
@@ -21,8 +22,8 @@ const getDetail = (id) => {
 const newBlog = (blogData = {}) => {
     console.log('data...', blogData)
     const id = blogData.id
-    const title = blogData.title
-    const content = blogData.content
+    const title = xss(blogData.title)
+    const content =xss(blogData.content)
     const author = blogData.author
     const createtime = Date.now()
     let sql = `insert into blogs (id,title,content,createtime,author) values (${id},'${title}','${content}','${createtime}','${author}') `
