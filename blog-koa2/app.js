@@ -7,6 +7,9 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-generic-session')
 const redisStroe = require('koa-redis')
+const path = require('path')
+const fs = require('fs')
+const morgan = require('koa-morgan')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -36,6 +39,20 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
+const ENV = process.env, NODE_ENV
+if (ENV !== 'production') {
+  app.use(morgan('dev'));
+}
+else{
+  //线上环境
+  const logFileName = path.join(__dirname,'logs','access.log')
+  const writeStream = fs.createWriteStream(logFileName,{
+    flags:'a'
+  })
+  app.use(morgan('combined', {
+    stream: writeStream
+  }));
+}
 
 app.keys = ['Wj1010_2000!']
 app.use(session({
